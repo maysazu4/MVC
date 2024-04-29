@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data</title>
+     <!-- <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">  -->
+</head>
+<body>
+    <h1>Sales Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Item Sold</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales_data %}
+            <tr>
+                <td>{{ sale.date }}</td>
+                <td>{{ sale.item }}</td>
+                <td>{{ sale.cost }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/logout">Logout</a>
+
+
+</body>
+</html> 
+

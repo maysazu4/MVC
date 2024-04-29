@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="salesData">
+        <!-- Sales data will be displayed here -->
+    </div>
+
+    <script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get username and password from form inputs
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Make a fetch request to the login endpoint
+    fetch('/login', { // Update the URL to point to your backend
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+        // If login is successful, redirect to the sales page
+        const baseUrl = 'http://localhost:8000'; // Update this if needed
+
+        const salesPageUrl = `${baseUrl}/sales`; // Adjust the URL to your sales page
+
+        window.location.href = '/sales';
+    })
+    .catch(error => {
+        console.error('Login failed:', error);
+    });
+});
+
+
+    </script>
+</body>
+</html>
